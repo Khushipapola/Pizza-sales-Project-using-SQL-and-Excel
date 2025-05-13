@@ -1,11 +1,11 @@
-###  Pizza Sales Using SQL and Excel
+#  Pizza Sales Using SQL and Excel
 
 ## Objective
 
 This project aims to perform a detailed analysis of pizza sales data using SQL queries and visualize key business insights using Excel dashboards. 
 The goal is to understand customer behavior, product performance, and time-based trends to improve business decision-making.
 
-## Business Requirements & Problem Statement
+# Business Requirements & Problem Statement
 # The pizza restaurant wants to understand:
 - How much revenue they’re generating
 - What are the most and least popular pizzas
@@ -13,7 +13,7 @@ The goal is to understand customer behavior, product performance, and time-based
 - Which pizza categories and sizes are performing best
 
 
-## KPIs  Calculated:
+# KPIs  Calculated:
 1. Total Revenue: Sum of the total price of all pizza orders
 2. Average Order Value: Total revenue ÷ total number of orders
 3. Total Pizzas Sold: Sum of all pizza quantities
