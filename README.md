@@ -22,44 +22,43 @@ The goal is to understand customer behavior, product performance, and time-based
 
 
 ## SQL Queries Used
-# 1.	Total revenue:
+1.	Total revenue:
 SELECT sum(total_price) as Total_Revenue from pizza_sales;
  
-
-# 2.	 Average order value:
+2.	 Average order value:
 SELECT sum(total_price)/count(distinct order_id) as Avg_Order_Value from pizza_sales;
  
 
-# 3.	 Total Pizzas sold:
+3.	 Total Pizzas sold:
 SELECT sum(quantity) as Total_Pizza_Sold from pizza_sales;
  
 
-# 4.	 Total orders placed:
+4.	 Total orders placed:
 SELECT count(distinct(order_id)) as Total_Orders from pizza_sales;
  
 
-# 5.	 Average pizzas per order:
+5.	 Average pizzas per order:
 SELECT CAST(CAST(sum(quantity) AS DECIMAL(10,2))/CAST(count(distinct order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2))  as Avg_Pizza_Sold from pizza_sales;
  
 
-# Daily trend for total orders:
+Daily trend for total orders:
 SELECT DATENAME(DW, order_date) as order_day, COUNT(DISTINCT order_id) as Total_Orders from pizza_sales 
 group by DATENAME(DW, order_date);
  
 
-# Hourly trend for orders:
+Hourly trend for orders:
 SELECT DATEPART(hour,order_time)as order_hours, count(distinct order_id) as Total_Orders from pizza_sales
 group by DATEPART(hour,order_time)
 order by DATEPART(hour,order_time);
  
-# Percentage of sales by pizza category :
+Percentage of sales by pizza category :
 SELECT pizza_category, sum(total_price)as total_sales , sum(total_price)* 100/ (SELECT sum(total_price) from pizza_sales where MONTH(order_date)=1 )
 as PCT from pizza_sales 
 where MONTH(order_date)=1
 GROUP BY pizza_category;
  
 
-# Percentage of sales by pizza size :
+Percentage of sales by pizza size :
 SELECT pizza_size, cast(sum(total_price)as decimal(10,2)) as total_sales , cast(sum(total_price)* 100/ (SELECT sum(total_price) from pizza_sales where DATEPART(quarter,order_date)=1 )as decimal(10,2))
 as PCT from pizza_sales 
 where DATEPART(quarter,order_date)=1
@@ -67,20 +66,20 @@ GROUP BY pizza_size
 order by PCT desc;
  
 
-# Total no. of pizzas sold by pizza category:
+Total no. of pizzas sold by pizza category:
 SELECT pizza_category, sum(quantity)as Total_Pizza_Sold
 from pizza_sales
 group by pizza_category;
  
 
-# Top 5 best sellers by total pizzas sold:
+Top 5 best sellers by total pizzas sold:
 SELECT top 5 pizza_name, sum(quantity) as Total_Pizzaa_Sold
 from pizza_sales
 group by pizza_name
 order by sum(quantity) desc;
  
 
-# Bottom 5 best sellers by Total pizzas sold:
+Bottom 5 best sellers by Total pizzas sold:
 SELECT top 5 pizza_name, sum(quantity) as Total_Pizzaa_Sold
 from pizza_sales
 group by pizza_name
@@ -119,7 +118,7 @@ order by sum(quantity);
 •	Average Pizzas Per Order: 2.34
 •	Busiest Days and Times: Orders are consistently highest on Fridays and Saturdays, indicating peak demand during the weekend.
 
-# o	The most active ordering times are between 12:00 PM - 1:00 PM and 5:00 PM - 8:00 PM, highlighting lunchtime and dinner rush periods. This information is crucial for staffing and operational planning.
+ o	The most active ordering times are between 12:00 PM - 1:00 PM and 5:00 PM - 8:00 PM, highlighting lunchtime and dinner rush periods. This information is crucial for staffing and operational planning.
 
 # •	Sales by Category and Size:
 o	The "Classic" pizza category contributes the most significantly to both sales and total orders.
